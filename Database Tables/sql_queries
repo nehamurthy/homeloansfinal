@@ -1,0 +1,91 @@
+1123047383
+
+
+create table users
+(userid int primary key,
+firstname varchar2(30),
+middlename varchar2(30),
+lastname varchar2(30),
+email varchar2(50),
+password varchar2(15)
+)
+
+
+create table applicants
+(applicantid int primary key,
+userid int not null,
+phone varchar2(10),
+dob date,
+gender varchar2(15),
+nationality varchar2(15),
+aadharno varchar2(12),
+panno varchar2(10),
+foreign key(userid) references users(userid)
+)
+
+
+create table loan
+(loanid varchar2(10) primary key,
+userid int,
+loanamount varchar2(30),
+tenure int,
+downpayment varchar2(30),
+downpayment_pct varchar2(30),
+foreign key(userid) references users(userid)
+)
+
+
+create table property
+(propertyid int primary key,
+userid int,
+propertyname varchar2(30),
+propertylocation varchar2(30),
+amount varchar2(30),
+foreign key(userid) references users(userid)
+)
+
+
+create table incomesalaried
+(userid int,
+retirementage int,
+monthlysalary varchar2(50),
+organization varchar2(50),
+foreign key(userid) references users(userid)
+)
+
+
+create table incomeselfemployed
+(userid int,
+turnover varchar2(50),
+natureofbusiness varchar2(50),
+businessvintage varchar2(50),
+foreign key(userid) references users(userid)
+)
+
+
+create table loanaccount
+(userid int,
+accountno varchar2(20) primary key,
+balance varchar2(50),
+foreign key(userid) references users(userid)
+)
+
+
+create table applicationstatus
+(applicationid varchar2(30) primary key,
+userid int not null,
+appointmentdate date,
+status varchar2(20),
+foreign key(userid) references users(userid)
+)
+
+
+create table documents
+(srno int primary key,
+userid int not null,
+idproof varchar2(90),
+ageproof varchar2(90),
+addressproof varchar2(90),
+incomeproof varchar2(90),
+propertyproof varchar2(90)
+)
